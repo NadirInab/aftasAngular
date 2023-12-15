@@ -1,0 +1,51 @@
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CompetitionService } from 'src/app/services/competition/competition.service';
+
+@Component({
+  selector: 'app-competition',
+  templateUrl: './competition.component.html',
+  styleUrls: ['./competition.component.css'],
+})
+export class CompetitionComponent implements OnInit {
+  data: any[] = [];
+  competitionForm: FormGroup;
+
+  constructor(
+    private competitionService: CompetitionService,
+    private formBuilder: FormBuilder
+  ) {}
+
+  ngOnInit(): void {
+    this.initializeForm();
+    this.getCompetition();
+  }
+
+  initializeForm(): void {
+    this.competitionForm = this.formBuilder.group({
+      // Define your form controls and validation here
+      name: ['', Validators.required],
+      // Add more form controls as needed
+    });
+  }
+
+  getCompetition(): void {
+    this.competitionService.getCompetition().subscribe((data) => {
+      console.log(data);
+      // this.data = data;
+    });
+  }
+
+  createCompetition(): void {
+    if (this.competitionForm.valid) {
+      const competitionData = this.competitionForm.value;
+      this.competitionService.createCompetition(competitionData).subscribe((response) => {
+        console.log(response);
+        // Optionally, you can fetch the updated list after creating a competition
+        this.getCompetition();
+      });
+    } else {
+      // Handle form validation errors
+    }
+  }
+}
