@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { HttpClientModule } from '@angular/common/http';
 import { PodiumComponent } from './components/podium/podium.component';
 import { CompetitionComponent } from './components/competition/competition.component';
 
@@ -15,12 +16,13 @@ import { CompetitionComponent } from './components/competition/competition.compo
     HomeComponent,
     NavComponent,
     FooterComponent,
-    PodiumComponent,
+    PodiumComponent, 
     CompetitionComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule, 
+    HttpClientModule  
   ],
   providers: [],
   bootstrap: [AppComponent]
