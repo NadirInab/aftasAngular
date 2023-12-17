@@ -1,0 +1,11 @@
+form{
+    width: 80vw;
+    margin-top: 3rem;
+}
+
+.fishesData{
+    width: 80vw;
+    /* margin-top: 3rem; */
+    margin: 0 auto;
+    padding: 5rem;
+}

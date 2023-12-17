@@ -1,0 +1,46 @@
+<form *ngIf="form" [formGroup]="form" (ngSubmit)="onSubmit()" class="max-w-md mx-auto mt-4 p-4 bg-white shadow-md">
+    <div class="mb-4">
+      <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Description:</label>
+      <input type="text" id="description" formControlName="description"
+        class="w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300">
+      <div *ngIf="form.get('description')?.hasError('required')" class="text-red-500 text-sm mt-1">
+      
+      </div>
+    </div>
+  
+    <div class="mb-4">
+      <label for="point" class="block text-gray-700 text-sm font-bold mb-2">Point:</label>
+      <input type="number" id="point" formControlName="point"
+        class="w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300">
+      <div *ngIf="form.get('point')?.hasError('required')" class="text-red-500 text-sm mt-1">
+   
+      </div>
+      <div *ngIf="form.get('point')?.hasError('min')" class="text-red-500 text-sm mt-1">
+      
+      </div>
+    </div>
+    <button type="submit" [disabled]="!form.valid"
+      class="bg-blue-500 text-white p-2 rounded-md cursor-pointer hover:bg-blue-800">Submit</button>
+  </form>
+
+  <div class="container mt-4 mx-10">
+    <h2 class="text-lg font-bold mb-2 text-dark-500">Levels:</h2>
+    <table class="w-full border-collapse border border-blue-500">
+      <thead>
+        <tr>
+          <th class="p-2 border border-blue-500 bg-blue-200 text-white">ID</th>
+          <th class="p-2 border border-blue-500 bg-blue-200 text-white">Description</th>
+          <th class="p-2 border border-blue-500 bg-blue-200 text-white">Point</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let level of levels">
+          <td class="p-2 border border-blue-500">{{ level.id }}</td>
+          <td class="p-2 border border-blue-500">{{ level.description }}</td>
+          <td class="p-2 border border-blue-500">{{ level.point }}</td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+
+  

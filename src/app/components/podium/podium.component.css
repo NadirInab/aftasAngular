@@ -1,10 +1,13 @@
 body {
     font-family: sans-serif;
+    border: 2px solid rgb(32, 180, 119);
   }
   
   .container {
     display: flex;
     align-items: flex-end;
+    justify-content: center;
+    padding: 12rem;
   }
   
   .podium__item {

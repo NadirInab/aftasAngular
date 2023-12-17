@@ -1,1 +1,29 @@
-<p>competition works!</p>
+<form *ngIf="form" [formGroup]="form" (ngSubmit)="onSubmit()" class="max-w-md mx-auto mt-4 p-4 bg-white shadow-md">
+    <div class="mb-4">
+      <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
+      <input type="text" id="name" formControlName="name" class="w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300">
+    </div>
+  
+    <div class="mb-4">
+      <label for="familyName" class="block text-gray-700 text-sm font-bold mb-2">Family Name:</label>
+      <input type="text" id="familyName" formControlName="familyName" class="w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300">
+    </div>
+  
+    <div class="mb-4">
+      <label for="nationality" class="block text-gray-700 text-sm font-bold mb-2">Nationality:</label>
+      <input type="text" id="nationality" formControlName="nationality" class="w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300">
+    </div>
+  
+    <div class="mb-4">
+      <label for="identityDocumentType" class="block text-gray-700 text-sm font-bold mb-2">Identity Document Type:</label>
+      <input type="text" id="identityDocumentType" formControlName="identityDocumentType" class="w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300">
+    </div>
+  
+    <div class="mb-4">
+      <label for="identityNumber" class="block text-gray-700 text-sm font-bold mb-2">Identity Number:</label>
+      <input type="text" id="identityNumber" formControlName="identityNumber" class="w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300">
+    </div>
+  
+    <button type="submit" class="bg-blue-500 text-white p-2 rounded-md cursor-pointer hover:bg-blue-600">Add Member</button>
+  </form>
+  
