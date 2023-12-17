@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { CompetitionComponent } from './components/competition/competition.component';
 import { PodiumComponent } from './components/podium/podium.component';
+import { LevelComponent } from './components/level/level.component';
+import { FishComponent } from './components/fish/fish.component';
 
 const routes: Routes = [
   {
@@ -19,7 +21,18 @@ const routes: Routes = [
     path : 'podium', 
     component : PodiumComponent, 
     title : 'Podium Page'
-  }
+  },
+  {
+    path : 'level', 
+    component : LevelComponent, 
+    title : 'Level Page'
+  }, 
+  {
+    path : 'fish', 
+    component : FishComponent, 
+    title : 'Fish Page'
+  }, 
+
 ];
 
 @NgModule({

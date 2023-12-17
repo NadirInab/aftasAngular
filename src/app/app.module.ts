@@ -9,6 +9,9 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PodiumComponent } from './components/podium/podium.component';
 import { CompetitionComponent } from './components/competition/competition.component';
+import { LevelComponent } from './components/level/level.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FishComponent } from './components/fish/fish.component';
 
 @NgModule({
   declarations: [
@@ -17,12 +20,14 @@ import { CompetitionComponent } from './components/competition/competition.compo
     NavComponent,
     FooterComponent,
     PodiumComponent, 
-    CompetitionComponent
+    CompetitionComponent, LevelComponent, FishComponent, 
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule, 
-    HttpClientModule  
+    HttpClientModule, 
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
