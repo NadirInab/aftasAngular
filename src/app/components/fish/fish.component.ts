@@ -67,4 +67,16 @@ export class FishComponent implements OnInit {
       );
     }
   }
+
+  onDeleteFish(fishId: number): void {
+    this.fishService.deleteFish(fishId).subscribe(
+      () => {
+        console.log('Fish deleted successfully.');
+        this.loadFishes();
+      },
+      (error) => {
+        console.error('Error deleting fish:', error);
+      }
+    );
+  }
 }

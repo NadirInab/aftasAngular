@@ -17,4 +17,8 @@ export class FishService {
   addFish(fishData: any): Observable<any> {
     return this.http.post<any>(this.apiUrl, fishData);
   }
+
+  deleteFish(fishId: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/${fishId}`);
+  }
 }

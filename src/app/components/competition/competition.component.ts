@@ -1,79 +1,74 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CompetitionService } from 'src/app/services/competition/competition.service';
-import { MemberService } from 'src/app/services/member/member.service';
-
 
 @Component({
   selector: 'app-competition',
   templateUrl: './competition.component.html',
-  styleUrls: ['./competition.component.css']
+  styleUrls: ['./competition.component.css'],
 })
 export class CompetitionComponent implements OnInit {
-  data: any[] = [];
   form!: FormGroup;
+  competitions: any[] = [];
+
 
   constructor(
-    private competitionService: CompetitionService,
-    private memberService: MemberService ,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private competitionService: CompetitionService, 
+    
   ) {}
 
-  ngOnInit(): void {
-    this.getCompetition();
-    this.initMemberForm(); 
-  }
-
-  getCompetition(): void {
-    this.competitionService.getCompetition().subscribe((data) => {
-      console.log(data);
-    });
-  }
-
-  createCompetition(): void {
-    const competitionData = {};
-    this.competitionService.createCompetition(competitionData).subscribe((response) => {
-      console.log(response);
-      this.getCompetition();
-    });
-  }
-
-  updateCompetition(id: number): void {
-    const updatedData = {};
-    this.competitionService.updateCompetition(id, updatedData).subscribe((response) => {
-      console.log(response);
-      this.getCompetition();
-    });
-  }
-
-  deleteCompetition(id: number): void {
-    this.competitionService.deleteCompetition(id).subscribe((response) => {
-      console.log(response);
-      this.getCompetition();
-    });
-  }
-
-  private initMemberForm(): void {
+  ngOnInit() {
     this.form = this.fb.group({
-      name: ['', Validators.required],
-      familyName: ['', Validators.required],
-      nationality: ['', Validators.required],
-      identityDocumentType: ['', Validators.required],
-      identityNumber: ['', Validators.required]
+      date: ['', Validators.required],
+      startTime: ['', Validators.required],
+      endTime: ['', Validators.required],
+      location: ['', Validators.required],
+      amount: ['', Validators.required],
     });
+
+    this.loadCompetitions() ;
   }
 
-  onSubmit(): void {
+  loadCompetitions() {
+    this.competitionService.getCompetition().subscribe(
+      (data) => {
+        this.competitions = data.data;
+      },
+      (error : any) => {
+        console.error('Error fetching competitions:', error);
+      }
+    );
+  }
+
+
+
+  onSubmitComp() {
     if (this.form.valid) {
-      const memberFormData = this.form.value;
-      this.memberService.addMember(memberFormData).subscribe(
-        (response) => {
-          console.log('Member added successfully:', response);
+      const formData = this.form.value;
+      this.competitionService.createCompetition(formData).subscribe(
+        (response : any) => {
+          console.log('Competition added successfully:', response);
+          this.loadCompetitions();
         },
-        (error) => {
-          console.error('Error adding member:', error);
+        (error : any) => {
+          console.error('Error adding competition:', error);
         }
       );
     }
   }
+
+  onDelete(competitionId: number) {
+    this.competitionService.deleteCompetition(competitionId).subscribe(
+      () => {
+        console.log('Competition deleted successfully');
+        this.loadCompetitions();
+      },
+      (error :any) => {
+        console.error('Error deleting competition:', error);
+      }
+    );
+  }
+
+
 }

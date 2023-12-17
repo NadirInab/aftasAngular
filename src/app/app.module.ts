@@ -12,6 +12,7 @@ import { CompetitionComponent } from './components/competition/competition.compo
 import { LevelComponent } from './components/level/level.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FishComponent } from './components/fish/fish.component';
+import { MemberComponent } from './components/member/member.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { FishComponent } from './components/fish/fish.component';
     NavComponent,
     FooterComponent,
     PodiumComponent, 
-    CompetitionComponent, LevelComponent, FishComponent, 
+    CompetitionComponent, LevelComponent, FishComponent, MemberComponent, 
     
   ],
   imports: [
