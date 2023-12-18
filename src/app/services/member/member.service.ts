@@ -14,4 +14,11 @@ export class MemberService {
   addMember(memberData: any): Observable<any> {
     return this.http.post(this.apiUrl, memberData);
   }
+  getMember(): Observable<any> {
+    return this.http.get(this.apiUrl);
+  }
+
+  deleteMember(memberId: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${memberId}`);
+  }
 }

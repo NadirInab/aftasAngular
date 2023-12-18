@@ -10,8 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 
 export class CompetitionService {
-  // baseUrl = environment.API_BASE_URL;
-  baseUrl ='http';
+  private baseUrl = 'http://localhost:8080/api/competitions';
 
   constructor(private http : HttpClient) { }
 
@@ -26,13 +25,6 @@ export class CompetitionService {
     return this.http.post(`${this.baseUrl}/competition`, competitionData, { headers });
   }
 
-  updateCompetition(competitionId: number, competitionData: any): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
-
-    return this.http.put(`${this.baseUrl}/competition/${competitionId}`, competitionData, { headers });
-  }
 
   deleteCompetition(competitionId: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/competition/${competitionId}`);
