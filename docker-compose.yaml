@@ -1,0 +1,33 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql-container-aftas
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: aftas
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+
+  aftasback:
+    image: aftasback:latest
+    container_name: aftasback-container
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/aftas
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+
+  aftas:
+    image: aftas:latest
+    container_name: aftas-container
+    restart: always
+    ports:
+      - "4200:80"
+    depends_on:
+      - aftasback
